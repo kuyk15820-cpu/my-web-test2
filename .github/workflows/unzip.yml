@@ -17,18 +17,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          # ลบบรรทัด cache: 'npm' ออกแล้ว เพื่อไม่ให้เรียกหา package-lock.json
 
       - name: Install Dependencies
-        run: npm install # เปลี่ยนเป็น npm install เพราะไม่มี package-lock.json
+        run: npm install
 
       - name: Build Project
         run: npm run build
 
-      # บีบอัดไฟล์ใน dist ให้กลายเป็น ZIP แล้วปล่อยให้โหลดบน GitHub
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: site-build-output # ตั้งชื่อไฟล์ ZIP
-          path: dist/             # ดึงไฟล์ทั้งหมดจากโฟลเดอร์ dist
-          retention-days: 7       # เก็บไฟล์ไว้ดาวน์โหลดได้ 7 วัน
+          name: site-build-output
+          path: dist/
+          retention-days: 7
