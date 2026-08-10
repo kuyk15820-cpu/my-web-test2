@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: '22'
 
-      # Step ที่เพิ่มสำหรับเช็กเวอร์ชัน
-      - name: Check Package Versions
-        run: npm outdated || true
-
       - name: Install Dependencies
         run: npm install
+
+      # ย้ายมาไว้หลัง npm install เพื่อให้แสดงเวอร์ชัน Current ตามจริง
+      - name: Check Package Versions
+        run: npm outdated || true
 
       - name: Build Project
         run: npm run build
