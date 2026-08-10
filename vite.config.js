@@ -9,4 +9,8 @@ export default defineConfig({
     cssInjectedByJsPlugin() // เพิ่มตัวนี้เพื่อรวม CSS เข้าไปในไฟล์ JS ทั้งหมด
   ],
   base: './',
+  build: {
+    minify: false,       // ปิดการบีบอัดโค้ด (ส่งผลให้ไฟล์ใหญ่ขึ้นมากที่สุด)
+    sourcemap: 'inline', // ฝัง source map สำหรับ debug ลงในไฟล์ .js โดยตรง
+  },
 })
