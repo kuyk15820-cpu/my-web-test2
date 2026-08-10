@@ -1,6 +1,25 @@
 import React from 'react';
 import './App.css';
 
+// Import Heavy Libraries เพื่อดันขนาดไฟล์ .js ตอน Build
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { jsPDF } from "jspdf";
+import Chart from "chart.js/auto";
+import * as echarts from "echarts";
+import moment from "moment-timezone";
+import _ from "lodash";
+
+// ผูก Font ของ pdfmake
+if (pdfFonts && pdfFonts.pdfMake) {
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+}
+
+// อ้างอิงตัวแปรไว้สั้นๆ ด้านนอก Component เพื่อป้องกันไม่ให้ Vite ตัดโค้ดทิ้ง (Tree-Shaking)
+if (false) {
+  console.log(pdfMake, jsPDF, Chart, echarts, moment, _);
+}
+
 const PACKAGES = [
   { id: 'batterymirror', name: 'BatteryMirror', desc: 'Mirrors the statusbar battery on the Low Power Mode toggle in Control Center.', version: 'v0.0.4', icon: 'com.futur3sn0w.batterymirror.png' },
   { id: 'battfx', name: 'BattFX', desc: 'Styles the system battery indicator while keeping the modern percentage body available systemwide.', version: 'v0.0.5', icon: 'com.futur3sn0w.battfx.png' },
