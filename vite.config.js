@@ -2,15 +2,24 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    cssInjectedByJsPlugin() // เพิ่มตัวนี้เพื่อรวม CSS เข้าไปในไฟล์ JS ทั้งหมด
+    cssInjectedByJsPlugin()
   ],
   base: './',
   build: {
     minify: true,
-    sourcemap: false, // ปิด sourcemap โดยใช้ค่า boolean (ไม่มีเครื่องหมายอัญประกาศ)
-  },
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        // บังคับรวมไฟล์ JS และ Dynamic Imports ทั้งหมดเข้าไว้ในไฟล์เดียว
+        inlineDynamicImports: true,
+        // สุ่ม Hash ต่อท้ายชื่อไฟล์เหมือนเดิม (เช่น index-D5WeNLll.js)
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    }
+  }
 })
