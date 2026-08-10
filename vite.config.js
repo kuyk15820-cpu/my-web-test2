@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   base: './',
   build: {
-    minify: true,       // ปิดการบีบอัดโค้ด (ส่งผลให้ไฟล์ใหญ่ขึ้นมากที่สุด)
-    sourcemap: 'false', // ฝัง source map สำหรับ debug ลงในไฟล์ .js โดยตรง
+    minify: true,
+    sourcemap: false, // ปิด sourcemap โดยใช้ค่า boolean (ไม่มีเครื่องหมายอัญประกาศ)
   },
 })
