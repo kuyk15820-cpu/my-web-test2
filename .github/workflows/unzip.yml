@@ -17,13 +17,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          # ลบบรรทัด cache: 'npm' ออกแล้ว เพื่อไม่ให้เรียกหา package-lock.json
 
       - name: Install Dependencies
         run: npm install
-
-      # ย้ายมาไว้หลัง npm install เพื่อให้แสดงเวอร์ชัน Current ตามจริง
-      - name: Check Package Versions
-        run: npm outdated || true
 
       - name: Build Project
         run: npm run build
